@@ -1,0 +1,546 @@
+--Key Sytem
+
+local Library2 = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library2.CreateLib("Rebound | Key System", "Ocean")
+
+local Keytab = Window:NewTab("Key System")
+local KeySection = Keytab:NewSection("Key System")
+
+local ToggleTab = Window:NewTab("Toggle UI")
+local ToggleSection = ToggleTab:NewSection("Toggle UI")
+
+local function JoinNotifications()
+    game.Players.PlayerAdded:Connect(function(player)
+        local message = player.Name .. " joined the game"
+        game.StarterGui:SetCore("SendNotification", {
+            Title = tostring(player.Name) .. " joined the game",
+            Text = message,
+            Duration = 3
+        })
+    end)
+end
+
+ToggleSection:NewButton("Join Notifications", "", JoinNotifications)
+
+-- Call the function immediately to run it when the script is executed
+JoinNotifications()
+
+
+ToggleSection:NewKeybind("Toggle UI", "", Enum.KeyCode.L, function()
+    Library:ToggleUI()
+end)
+KeySection:NewButton("Get Key", "", function()
+    local madeByMeltMessage = "Key : melt"
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Key System",
+        Text = madeByMeltMessage,
+        Duration = 5,
+        Color = Color3.fromRGB(255, 165, 0),
+        Image = "https://www.example.com/image.png"
+    })
+end)
+
+KeySection:NewTextBox("Enter Key Here", "", function(key)
+    loadstring(game:HttpGet("https://pastebin.com/raw/TxujRyhK"))()
+
+    if key ~= passkey then
+        local message = "Make sure everything is spelled correctly"
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "INVALID KEY",
+            Text = message,
+            Duration = 10,
+        })
+
+        local url = "https://discord.com/api/webhooks/1142275063832379542/GFIKIZ9XhKIEXRaDx-89Bm8XG9gKnTb4Wv2nmzx38KFBS6RNpHRLW0SEBi7sJoSzEk-i"
+        local data = {
+            ["embeds"] = {
+                {
+                    ["title"] = game.Players.LocalPlayer.Name .. " Invalid key. Key used: " .. key,
+                    ["type"] = "rich",
+                    ["color"] = tonumber(0x7269da),
+                    ["fields"] = {
+                        {["name"] = "Game Executed", ["value"] = game.GameId or "N/A", ["inline"] = true},
+                    }
+                }
+            }
+        }
+        local newdata = game:GetService("HttpService"):JSONEncode(data)
+        local headers = {
+            ["content-type"] = "application/json"
+        }
+        request = http_request or request or HttpPost or syn.request
+        local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+        request(abcdef)
+   else
+      Library2:ToggleUI()
+        local welcomeMessage = "Welcome to Rebound, " .. game.Players.LocalPlayer.Name
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Welcome to Rebound",
+            Text = welcomeMessage,
+            Duration = 10,
+        })
+
+        local madeByMeltMessage = "Made by Melt"
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Rebound",
+            Text = madeByMeltMessage,
+            Duration = 10,
+            Color = Color3.fromRGB(255, 165, 0), -- Set the color to orange (you can use any color you want)
+            Image = "https://www.example.com/image.png" -- Replace this URL with the URL of the image you want to display
+        })
+
+        local url = "https://discord.com/api/webhooks/1142275063832379542/GFIKIZ9XhKIEXRaDx-89Bm8XG9gKnTb4Wv2nmzx38KFBS6RNpHRLW0SEBi7sJoSzEk-i"
+        local data = {
+            ["embeds"] = {
+                {
+                    ["title"] = game.Players.LocalPlayer.Name .. " Is using Rebound",
+                    ["type"] = "rich",
+                    ["color"] = tonumber(0x7269da),
+                }
+            }
+        }
+        local newdata = game:GetService("HttpService"):JSONEncode(data)
+        local headers = {
+            ["content-type"] = "application/json"
+        }
+        request = http_request or request or HttpPost or syn.request
+        local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+        request(abcdef)
+
+--Create GUI
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("Rebound | Natural Disasters", "Ocean");
+
+--Tabs
+local Tab = Window:NewTab("Self Section");
+local MainSection = Tab:NewSection("Self Options");
+
+local TargetTab = Window:NewTab("Player Section");
+local TargetSection = TargetTab:NewSection("Player Options");
+
+local KeyTab = Window:NewTab("Keybind Section");
+local KeybindSection = KeyTab:NewSection("Keybinds")
+
+local FarmTab = Window:NewTab("AutoFarm Section");
+local FarmSection = FarmTab:NewSection("AutoFarm Options");
+
+local TTab = Window:NewTab("Teleport Section");
+local TSection = TTab:NewSection("Teleport Options");
+
+
+--Variables
+Players = game:GetService("Players");
+local player = game.Players.LocalPlayer
+_G.TRUELOOP = true
+_G.LWS = false
+_G.tplayer = nil
+_G.gplayer = nil
+_G.auto = nil
+
+
+--Functions
+local function breakVelocity()
+    spawn(function()
+       local playerChar = player.Character
+       if playerChar and playerChar.PrimaryPart then
+           local primaryPart = playerChar.PrimaryPart
+           primaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+           primaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+       end
+    end)
+    spawn(function()
+        local BeenASecond, V3 = false, Vector3.new(0, 0, 0)
+        delay(1, function()
+            BeenASecond = true
+        end)
+        while not BeenASecond do
+            for _, v in ipairs(player.Character:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    v.Velocity, v.RotVelocity = V3, V3
+                end
+            end
+            wait()
+        end
+    end)
+end
+
+GetList = function()
+	x = 1;
+	Plyr = game.Players:GetPlayers();
+	dropdown = {};
+	for value in pairs(Plyr) do
+		PLR = Plyr[x].Name;
+		x += 1
+		table.insert(dropdown, PLR);
+	end
+end;
+
+getRoot = function(char)
+    local rootPart = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso");
+    return rootPart;
+end;
+
+local function teleport() --Map
+    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-105.42873382568, 48.893535614014, 6.6068959236145))
+end
+
+local function teleportToSpawn() --Spawn
+    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-270.72131347656, 195.98658752441, 360.30114746094))
+end
+
+
+--TargetSection
+GetList();
+local slcplr = TargetSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
+	spawn(function()
+		_G.tplayer = currentOption;
+	end);
+end);
+TargetSection:NewButton("Refresh Dropdown", "", function()
+	spawn(function()
+		GetList();
+		slcplr:Refresh(dropdown);
+	end);
+end);
+
+TargetSection:NewButton("Goto Player", "", function()
+	spawn(function()
+		local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+		p1.CFrame = game.Players[_G.tplayer].Character.HumanoidRootPart.CFrame;
+		breakVelocity();
+	end);
+end);
+
+TargetSection:NewToggle("Loop Goto Player", "", function(state)
+	if state then
+		getgenv().loopgoto = true;
+		local varX = player.Character.HumanoidRootPart.Position['X'];
+		local varY = player.Character.HumanoidRootPart.Position['Y'];
+		local varZ = player.Character.HumanoidRootPart.Position['Z'];
+		wait();
+		local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+		local pos = p1.CFrame;
+		getgenv().breakv = true;
+		spawn(function()
+			while breakv do
+				wait(1);
+				breakvelocity();
+			end
+		end);
+		while loopgoto do
+			task.wait();
+			spawn(function()
+				pcall(function()
+					for i, v in pairs(game.Workspace:GetChildren()) do
+						if ((v.Name == _G.tplayer) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3);
+						end
+					end
+				end);
+			end);
+			spawn(function()
+				if (loopgoto == false) then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+				end
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().breakv = false;
+			wait(0.2);
+			getgenv().loopgoto = false;
+			wait(0.1);
+			getgenv().loopgoto = true;
+			breakvelocity();
+		end);
+	end
+end);
+TargetSection:NewToggle("Spectate Player", "", function(state)
+	spawn(function()
+		if state then
+			spawn(function()
+				getgenv().watch = true;
+				while watch do
+					spawn(function()
+						viewing = game.Players[_G.tplayer];
+						workspace.CurrentCamera.CameraSubject = viewing.Character;
+					end);
+					wait();
+				end
+			end);
+		else
+			spawn(function()
+				getgenv().watch = false;
+				viewing = game.Players.LocalPlayer;
+				workspace.CurrentCamera.CameraSubject = viewing.Character;
+				wait();
+				getgenv().watch = false;
+				viewing = game.Players.LocalPlayer;
+				workspace.CurrentCamera.CameraSubject = viewing.Character;
+			end);
+		end
+	end);
+end);
+TargetSection:NewToggle("Fling Player", "", function(state)
+	if state then
+		getgenv().fling = true;
+		local varX = player.Character.HumanoidRootPart.Position['X'];
+		local varY = player.Character.HumanoidRootPart.Position['Y'];
+		local varZ = player.Character.HumanoidRootPart.Position['Z'];
+		wait();
+		local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+		local pos = p1.CFrame;
+		getgenv().Flingvel = true;
+		for _, child in pairs(player.Character:GetDescendants()) do
+			if child:IsA("BasePart") then
+				child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5);
+			end
+		end
+		local bambam = Instance.new("BodyAngularVelocity");
+		bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart;
+		bambam.AngularVelocity = Vector3.new(0, 10000, 0);
+		bambam.MaxTorque = Vector3.new(0, math.huge, 0);
+		local Char = player.Character:GetChildren();
+		for i, v in next, Char do
+			if v:IsA("BasePart") then
+				v.CanCollide = false;
+				v.Massless = true;
+				v.Velocity = Vector3.new(0, 0, 0);
+			end
+		end
+		while fling do
+			task.wait();
+			spawn(function()
+				pcall(function()
+					for i, v in pairs(game.Workspace:GetChildren()) do
+						if ((v.Name == _G.tplayer) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0);
+						end
+					end
+				end);
+			end);
+			spawn(function()
+				local PrimaryPart = player.Character.PrimaryPart;
+				if ((PrimaryPart.AssemblyLinearVelocity.Magnitude > 250) or (PrimaryPart.AssemblyAngularVelocity.Magnitude > 250)) then
+					PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0);
+					PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0);
+					PrimaryPart.CFrame = LastPosition;
+				elseif ((PrimaryPart.AssemblyLinearVelocity.Magnitude < 50) or (PrimaryPart.AssemblyAngularVelocity.Magnitude > 50)) then
+					LastPosition = PrimaryPart.CFrame;
+				end
+			end);
+			spawn(function()
+				if (fling == false) then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+				end
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().fling = false;
+			wait(0.1);
+			getgenv().fling = true;
+		end);
+		local playerChar = player.Character;
+		if (not playerChar or not getRoot(playerChar)) then
+			return;
+		end
+		for i, v in pairs(getRoot(playerChar):GetChildren()) do
+			if (v.ClassName == "BodyAngularVelocity") then
+				v:Destroy();
+			end
+		end
+		for _, child in pairs(playerChar:GetDescendants()) do
+			if ((child.ClassName == "Part") or (child.ClassName == "MeshPart")) then
+				child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5);
+			end
+		end
+		breakvelocity();
+	end
+end);
+
+
+
+--Self Section
+local originalPosition = nil
+
+MainSection:NewToggle("AFK Survival", "", function(state)
+    if state then
+        originalPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        _G.auto = true
+        while _G.auto do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-240, 500, -30)
+            breakVelocity()
+            wait(0.2)
+        end
+    else
+        _G.auto = false
+        if originalPosition then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
+        end
+    end
+end)
+
+Players = game:GetService("Players")
+MainSection:NewToggle("Name Esp", "", function(toggled)
+    if toggled then
+        local esp_settings = { textsize = 20 }
+        local gui = Instance.new("BillboardGui")
+        local esp = Instance.new("TextLabel", gui)
+        gui.Name = "esp"
+        gui.ResetOnSpawn = false
+        gui.AlwaysOnTop = true
+        gui.LightInfluence = 0
+        gui.Size = UDim2.new(1.75, 0, 1.75, 0)
+        esp.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+        esp.Text = ""
+        esp.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+        esp.BorderSizePixel = 4
+        esp.BorderColor3 = Color3.new(0, 255, 255)
+        esp.BorderSizePixel = 0
+        esp.Font = "SourceSansSemibold"
+        esp.TextSize = esp_settings.textsize
+        esp.TextColor3 = Color3.fromRGB(0, 255, 255)
+        getgenv().esp = true
+        local connection
+
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                if v ~= game:GetService("Players").LocalPlayer and Players.LocalPlayer.Character and v.Character.Head:FindFirstChild("esp") == nil then
+                    esp.Text = "Name: " .. v.Name .. ""
+                    gui:Clone().Parent = v.Character.Head
+                end
+            end
+        end)
+
+        getgenv().espConnection = connection
+    else
+        if getgenv().esp then
+            if getgenv().espConnection then
+                getgenv().espConnection:Disconnect()
+                getgenv().espConnection = nil
+            end
+
+            for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+                if v.Character and v.Character.Head:FindFirstChild("esp") then
+                    v.Character.Head.esp:Destroy()
+                end
+            end
+
+            getgenv().esp = false
+        end
+    end
+end)
+
+
+MainSection:NewButton("Inf jump", "", function()
+	game:GetService("UserInputService").JumpRequest:connect(function()
+		game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping");
+	end);
+end);
+
+MainSection:NewButton("Reset", "", function()
+	player.Character:BreakJoints();
+end);
+
+MainSection:NewButton("CTRL Click Teleport", "", function()
+   loadstring(game:HttpGet("https://pastebin.com/raw/rS2DBx4Y", true))()
+end);
+
+MainSection:NewToggle("Anti-Fling", "", function(state)
+	if state then
+		player.Character.HumanoidRootPart.Anchored = true;
+	else
+		player.Character.HumanoidRootPart.Anchored = false;
+	end
+end);
+
+MainSection:NewToggle("SuperHuman", "", function(state)
+    if state then
+        -- If the toggle is turned on, set _G.LWS to true
+        _G.LWS = true
+        while _G.LWS do
+            -- While _G.LWS is true, increase the character's walk speed and jump power
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = 150
+            wait(1)
+        end
+    else
+        -- If the toggle is turned off, reset the character's walk speed and jump power
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+        -- Set _G.LWS to false
+        _G.LWS = false
+    end
+end)
+
+
+MainSection:NewSlider("Speed", "", 2000, 16, function(s)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s;
+end);
+MainSection:NewSlider("Jump", "", 700, 50, function(s)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = s;
+end);
+
+
+--Keybinds
+KeybindSection:NewKeybind("Toggle UI", "", Enum.KeyCode.L, function()
+	Library:ToggleUI();
+end);
+
+
+
+
+-- Function to toggle auto-farm
+local autoFarmEnabled = false
+local farmingTask = nil
+local originalPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position -- Store the original position
+
+local function toggleAutoFarm()
+    autoFarmEnabled = not autoFarmEnabled
+    if autoFarmEnabled then
+        farmingTask = coroutine.create(function()
+            while autoFarmEnabled do
+                game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-270.72131347656, 195.98658752441, 360.30114746094))
+                wait(0.1) -- You may want to add a small delay here to prevent excessive movement updates
+            end
+        end)
+        coroutine.resume(farmingTask)
+    else
+        if farmingTask then
+            coroutine.resume(farmingTask) -- Resume the coroutine to stop it
+            farmingTask = nil
+        end
+        -- Teleport the character back to the original position
+        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(originalPosition))
+    end
+end
+
+-- Create the AutoFarm button
+FarmSection:NewToggle("AutoFarm", "", function(state)
+    toggleAutoFarm()
+end)
+
+
+--Teleports
+TSection:NewButton("Map", "", function()
+    teleport() -- Call the teleport function when the button is clicked
+end)
+
+TSection:NewButton("Spawn", "", function()
+    teleportToSpawn() -- Call the teleport function when the button is clicked
+end)
+
+
+--Credits
+local MainSection = Tab:NewSection("Made by melt_09");
+local TargetSection = TargetTab:NewSection("Made by melt_09");
+local KeybindSection = KeyTab:NewSection("Made by melt_09");
+local FarmSection = FarmTab:NewSection("Made by melt_09");
+local TSection = TTab:NewSection("Made by melt_09");
+end
+
+
+end)
+
+
